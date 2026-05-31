@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #FAF7F2;
+  --beige: #F2EDE7;
+  --blush: #EBDDD6;
+  --charcoal: #1E1E1E;
+  --gold: #C8A97E;
+  --gold-light: #DFC49A;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; overflow-x: hidden; cursor: none; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #FAF7F2; }
+::-webkit-scrollbar-thumb { background: #C8A97E; border-radius: 2px; }
+.dark ::-webkit-scrollbar-track { background: #0F0D0B; }
+
+.cursor-dot {
+  width: 8px; height: 8px; background: var(--gold); border-radius: 50%;
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%); transition: transform 0.1s ease;
+}
+.cursor-ring {
+  width: 36px; height: 36px; border: 1.5px solid var(--gold); border-radius: 50%;
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%); transition: all 0.15s ease; opacity: 0.6;
+}
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: linear-gradient(90deg, #C8A97E, #DFC49A); z-index: 9997; transition: width 0.1s ease;
+}
+.font-display { font-family: 'Cormorant Garamond', serif; }
+
+.glass-light {
+  background: rgba(250, 247, 242, 0.75); backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(200, 169, 126, 0.2);
+}
+.glass-dark {
+  background: rgba(26, 23, 20, 0.75); backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(200, 169, 126, 0.15);
+}
+
+.marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+@keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+.shimmer-text {
+  background: linear-gradient(90deg, #C8A97E 0%, #FAF7F2 40%, #C8A97E 60%, #DFC49A 100%);
+  background-size: 200% auto; -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; animation: shimmer 3s linear infinite;
+}
+
+@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+.float-anim { animation: float 4s ease-in-out infinite; }
+
+.gold-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.4; }
+
+.card-hover { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease; }
+.card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(200,169,126,0.15); }
+
+.nav-link {
+  position: relative; font-size: 11px; font-weight: 500;
+  letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s ease;
+}
+.nav-link::after {
+  content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px;
+  background: var(--gold); transition: width 0.3s ease;
+}
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+.noise-bg {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(200,169,126,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(235,221,214,0.12) 0%, transparent 40%);
+}
+.dark .noise-bg {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(200,169,126,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(200,169,126,0.04) 0%, transparent 40%);
+}
+
+.section-number {
+  font-family: 'Cormorant Garamond', serif; font-size: 120px; font-weight: 300;
+  opacity: 0.06; position: absolute; top: -20px; left: -10px; line-height: 1;
+  pointer-events: none; user-select: none;
+}
+.dark .section-number { opacity: 0.08; }
+
+.hover-underline { position: relative; }
+.hover-underline::after {
+  content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px;
+  background: var(--gold); transition: width 0.3s ease;
+}
+.hover-underline:hover::after { width: 100%; }
+
+.form-input {
+  background: transparent; border: none;
+  border-bottom: 1px solid rgba(200,169,126,0.4);
+  padding: 12px 0; font-family: 'Poppins', sans-serif;
+  font-size: 14px; transition: border-color 0.3s ease; outline: none; width: 100%;
+}
+.form-input:focus { border-bottom-color: var(--gold); }
